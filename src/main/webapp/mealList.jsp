@@ -7,21 +7,26 @@
 <body>
 
 <table border>
-<c:forEach var="meal" items="${storeMeals}">
+<c:forEach var="meal" items="${mapMeals}">
     <tr>
-        <c:if test="${meal.exceed == true}">
-            <td><font color="red">${meal.dateTime}</font></td>
-            <td><font color="red">${meal.description}</font></td>
-            <td><font color="red">${meal.calories }</font></td>
-            <td><font color="red">${meal.exceed}</font></td>
+        <c:if test="${meal.value.exceed == true}">
+            <td><font color="red">${meal.value.dateTime}</font></td>
+            <td><font color="red">${meal.value.description}</font></td>
+            <td><font color="red">${meal.value.calories }</font></td>
+            <td><font color="red">${meal.value.exceed}</font></td>
+            <td><a href="meals?action=edit&mealID=${meal.key}"/>edit</td>
+            <td><a href="meals?action=delete&mealID=${meal.key}"/>delete</td>
         </c:if>
-        <c:if test="${meal.exceed == false}">
-            <td><font color="black">${meal.dateTime}</font></td>
-            <td><font color="black">${meal.description}</font></td>
-            <td><font color="black">${meal.calories }</font></td>
-            <td><font color="black">${meal.exceed}</font></td>
+        <c:if test="${meal.value.exceed == false}">
+            <td><font color="black">${meal.value.dateTime}</font></td>
+            <td><font color="black">${meal.value.description}</font></td>
+            <td><font color="black">${meal.value.calories }</font></td>
+            <td><font color="black">${meal.value.exceed}</font></td>
+            <td><a href="meals?action=edit&mealID=${meal.key}"/>edit</td>
+            <td><a href="meals?action=delete&mealID=${meal.key}"/>delete</td>
         </c:if>
     </tr>
+    <form method="post"></form>
 </c:forEach>
 </table>
 
