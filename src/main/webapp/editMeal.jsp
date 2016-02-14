@@ -13,11 +13,11 @@
 <body>
 <form name="test" method="post" action="meals">
     <p><b>Дата и время:</b><a>${mealToEdit.dateTime}</a><br></p>
-    <p><b>ID_1:</b><input type="text" name="mealID_1" size="40" value="${mealID_1}"><br></p>
-    <p><b>ID:</b><input type="text" name="mealID" size="40" value="${mealID}"><br></p>
     <p><b>Описание:</b><input type="text" name="descrition" size="40" value="${mealToEdit.description}"><br></p>
     <p><b>Калории:</b><input type="text" name="calories" size="40" value="${mealToEdit.calories}"><br></p>
     <p><input type="submit" value="Отправить"></p>
+    <input type="hidden" name="mealID_1" size="40" value="${mealID_1}">
+    <input type="hidden" name="mealID" size="40" value="${mealID}">
 </form>
 </body>
 </html>

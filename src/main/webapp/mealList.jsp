@@ -12,7 +12,7 @@
         <c:if test="${meal.value.exceed == true}">
             <td><font color="red">${meal.value.dateTime}</font></td>
             <td><font color="red">${meal.value.description}</font></td>
-            <td><font color="red">${meal.value.calories }</font></td>
+            <td><font color="red">${meal.value.calories}</font></td>
             <td><font color="red">${meal.value.exceed}</font></td>
             <td><a href="meals?action=edit&mealID=${meal.key}"/>edit</td>
             <td><a href="meals?action=delete&mealID=${meal.key}"/>delete</td>
