@@ -17,7 +17,7 @@
     <a href="meals?action=create">Add Meal</a>
     <hr>
     <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
+        <thead> <!--Если удалить внешне страница не изменится -->
         <tr>
             <th>Date</th>
             <th>Description</th>
@@ -25,7 +25,7 @@
             <th></th>
             <th></th>
         </tr>
-        </thead>
+        </thead> <!--Если удалить внешне страница не изменится -->
         <c:forEach items="${mealList}" var="meal">
             <jsp:useBean id="meal" scope="page" type="ru.javawebinar.topjava.model.UserMealWithExceed"/>
             <tr class="${meal.exceed ? 'exceeded' : 'normal'}">
