@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 public class UserMealWithExceed {
     protected final Integer id;
 
+    protected final Integer userId;
+
     protected final LocalDateTime dateTime;
 
     protected final String description;
@@ -17,12 +19,13 @@ public class UserMealWithExceed {
 
     protected final boolean exceed;
 
-    public UserMealWithExceed(LocalDateTime dateTime, String description, int calories, boolean exceed) {
-        this(null, dateTime, description, calories, exceed);
+    public UserMealWithExceed(int userId, LocalDateTime dateTime, String description, int calories, boolean exceed) {
+        this(null, userId,dateTime, description, calories, exceed);
     }
 
-    public UserMealWithExceed(Integer id, LocalDateTime dateTime, String description, int calories, boolean exceed) {
+    public UserMealWithExceed(Integer id, int userId, LocalDateTime dateTime, String description, int calories, boolean exceed) {
         this.id = id;
+        this.userId = userId;
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
@@ -31,6 +34,10 @@ public class UserMealWithExceed {
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getUserId() {
+        return userId;
     }
 
     public LocalDateTime getDateTime() {
