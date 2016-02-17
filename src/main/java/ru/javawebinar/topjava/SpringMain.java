@@ -28,9 +28,9 @@ public class SpringMain {
 //            UserMeal userMeal = userMealRestController.save(new UserMeal(1, LocalDateTime.now(), "kalach", 1400));
 //            System.out.println("My Spring new UserMeal = " + userMeal);
 
-            //Test delete exsisting UserMeal
-            System.out.println(userMealRestController.getAll());
-            appCtx.close();
+//            //Test getAll UserMeal
+//            System.out.println(userMealRestController.getAll());
+//            appCtx.close();
         }
     }
 }

@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.web;
 
+import ru.javawebinar.topjava.LoggedUser;
 import ru.javawebinar.topjava.LoggerWrapper;
 
 import javax.servlet.ServletException;
@@ -17,8 +18,12 @@ public class UserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LOG.debug("redirect to userList");
+        String selUser = request.getParameter("selectUsers");
+        LoggedUser.setId(Integer.valueOf(selUser));
+
+        request.setAttribute("thisUser", selUser);
 
 //        request.getRequestDispatcher("/userList.jsp").forward(request, response);
-        response.sendRedirect("userList.jsp");
+        request.getRequestDispatcher("userList.jsp").forward(request, response);
     }
 }

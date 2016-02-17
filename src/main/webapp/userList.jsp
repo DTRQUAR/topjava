@@ -5,6 +5,7 @@
 </head>
 <body>
 <h2><a href="index.html">Home</a></h2>
-<h3>User list</h3>
+<a>Hello! You are the ${thisUser} user</a><br>
+<a href="meals">Get Meals For This User</a>
 </body>
 </html>
