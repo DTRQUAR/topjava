@@ -2,6 +2,7 @@ package ru.javawebinar.topjava.web;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.format.datetime.DateFormatter;
 import ru.javawebinar.topjava.LoggedUser;
 import ru.javawebinar.topjava.LoggerWrapper;
 import ru.javawebinar.topjava.model.UserMeal;
@@ -14,7 +15,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -50,10 +54,31 @@ public class MealServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
+        String strDate1 = request.getParameter("date1"); LocalDate date1;
+        String strDate2 = request.getParameter("date2"); LocalDate date2;
+        String strTime1 = request.getParameter("time1"); LocalTime time1;
+        String strTime2 = request.getParameter("time2"); LocalTime time2;
+
+        DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        if (strDate1 == null || !strDate1.matches("\\d\\d\\d\\d\\-\\d\\d\\-\\d\\d")) date1 = LocalDate.MIN;
+        else date1 = LocalDate.parse(strDate1);
+        if (strDate2 == null || !strDate2.matches("\\d\\d\\d\\d\\-\\d\\d\\-\\d\\d")) date2 = LocalDate.MAX;
+        else date2 = LocalDate.parse(strDate2);
+        if (strTime1 == null || strTime1.equals("")) time1 = LocalTime.MIN;
+        else time1 = LocalTime.parse(strTime1);
+        if (strTime2 == null || strTime1.equals("")) time2 = LocalTime.MAX;
+        else time2 = LocalTime.parse(strTime2);
+        LocalDateTime ldt1 = LocalDateTime.of(date1, time1);
+        LocalDateTime ldt2 = LocalDateTime.of(date2, time2);
+//        LocalDateTime ldt1 = LocalDateTime.of(LocalDate.parse(strDate1), LocalTime.parse(strTime1));
+//        LocalDateTime ldt2 = LocalDateTime.of(LocalDate.parse(strDate2), LocalTime.parse(strTime2));
+
+
         if (action == null) {
             LOG.info("getAll");
             request.setAttribute("mealList",
-                    UserMealsUtil.getWithExceeded(userMealRestController.getAll(), UserMealsUtil.DEFAULT_CALORIES_PER_DAY));
+                    UserMealsUtil.getWithExceededDateTime(userMealRestController.getAll(), ldt1, ldt2, UserMealsUtil.DEFAULT_CALORIES_PER_DAY));
             request.getRequestDispatcher("/mealList.jsp").forward(request, response);
         } else if (action.equals("delete")) {
             int id = getId(request);

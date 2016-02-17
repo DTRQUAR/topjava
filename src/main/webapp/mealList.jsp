@@ -16,6 +16,14 @@
     <h3>Meal list</h3>
     <a href="meals?action=create">Add Meal</a>
     <hr>
+
+    <form action="meals" method="get">
+        <input type="date" name="date1">&nbsp&nbsp&nbsp<input type="time" name="time1"> <br>
+        <input type="date" name="date2">&nbsp&nbsp&nbsp<input type="time"  name="time1">
+        <input type="submit" value="Filter">
+    </form>
+
+
     <table border="1" cellpadding="8" cellspacing="0">
         <thead> <!--Если удалить внешне страница не изменится -->
         <tr>
@@ -27,7 +35,7 @@
         </tr>
         </thead> <!--Если удалить внешне страница не изменится -->
         <c:forEach items="${mealList}" var="meal">
-            <jsp:useBean id="meal" scope="page" type="ru.javawebinar.topjava.model.UserMealWithExceed"/>
+            <jsp:useBean id="meal" scope="page" type="ru.javawebinar.topjava.to.UserMealWithExceed"/>
             <tr class="${meal.exceed ? 'exceeded' : 'normal'}">
                 <td>
                    <%--<fmt:parseDate value="${meal.dateTime}" pattern="y-M-dd'T'H:m" var="parsedDate"/>--%>
