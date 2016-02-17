@@ -61,6 +61,7 @@ public class UserMeal {
     public String toString() {
         return "UserMeal{" +
                 "id=" + id +
+                ", userId=" + userId +
                 ", dateTime=" + dateTime +
                 ", description='" + description + '\'' +
                 ", calories=" + calories +
