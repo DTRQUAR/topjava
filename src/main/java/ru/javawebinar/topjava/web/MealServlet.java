@@ -59,8 +59,6 @@ public class MealServlet extends HttpServlet {
         String strTime1 = request.getParameter("time1"); LocalTime time1;
         String strTime2 = request.getParameter("time2"); LocalTime time2;
 
-        DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
         if (strDate1 == null || !strDate1.matches("\\d\\d\\d\\d\\-\\d\\d\\-\\d\\d")) date1 = LocalDate.MIN;
         else date1 = LocalDate.parse(strDate1);
         if (strDate2 == null || !strDate2.matches("\\d\\d\\d\\d\\-\\d\\d\\-\\d\\d")) date2 = LocalDate.MAX;
@@ -71,9 +69,6 @@ public class MealServlet extends HttpServlet {
         else time2 = LocalTime.parse(strTime2);
         LocalDateTime ldt1 = LocalDateTime.of(date1, time1);
         LocalDateTime ldt2 = LocalDateTime.of(date2, time2);
-//        LocalDateTime ldt1 = LocalDateTime.of(LocalDate.parse(strDate1), LocalTime.parse(strTime1));
-//        LocalDateTime ldt2 = LocalDateTime.of(LocalDate.parse(strDate2), LocalTime.parse(strTime2));
-
 
         if (action == null) {
             LOG.info("getAll");
