@@ -79,7 +79,7 @@ public class InMemoryUserMealRepositoryImpl implements UserMealRepository {
         Objects.requireNonNull(startDateTime);
         Objects.requireNonNull(endDateTime);
         return getAll(userId).stream()
-                .filter(um -> TimeUtil.isBetween(um.getDateTime(), startDateTime, endDateTime))
+                .filter(um -> TimeUtil.isBetween(um.getDateTime().toLocalDateTime(), startDateTime, endDateTime))
                 .collect(Collectors.toList());
     }
 }

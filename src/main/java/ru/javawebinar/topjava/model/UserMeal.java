@@ -1,5 +1,5 @@
 package ru.javawebinar.topjava.model;
-
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 /**
@@ -9,11 +9,14 @@ import java.time.LocalDateTime;
 public class UserMeal {
     protected Integer id;
 
-    protected final LocalDateTime dateTime;
+    protected LocalDateTime dateTime;
 
-    protected final String description;
+    protected String description;
 
-    protected final int calories;
+    protected int calories;
+
+    public UserMeal(){
+    }
 
     public UserMeal(LocalDateTime dateTime, String description, int calories) {
         this(null, dateTime, description, calories);
@@ -30,12 +33,24 @@ public class UserMeal {
         this.id = id;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public Timestamp getDateTime() {
+        return Timestamp.valueOf(dateTime);
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDateTime(Timestamp dateTime) {
+        this.dateTime = dateTime.toLocalDateTime();
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
     }
 
     public int getCalories() {
