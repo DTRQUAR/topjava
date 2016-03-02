@@ -17,12 +17,12 @@ import java.util.concurrent.TimeUnit;
  * GKislin
  * 11.01.2015.
  */
-//@NamedQueries({
-//        @NamedQuery(name = UserMeal.DELETE, query = "DELETE FROM UserMeal um WHERE um.id=:id AND um.user.id=:user_id"),
-//        @NamedQuery(name = UserMeal.ALL_SORTED, query = "SELECT um FROM UserMeal um LEFT JOIN FETCH um.user WHERE um.user.id=:user_id ORDER BY um.dateTime"),
-////        @NamedQuery(name = UserMeal.GET_BETWEEN, query = "SELECT um FROM UserMeal um LEFT JOIN FETCH um.user " +
-////                "WHERE um.dateTime BETWEEN :stDate AND :edDate ORDER BY um.dateTime"),
-//})
+@NamedQueries({
+        @NamedQuery(name = UserMeal.DELETE, query = "DELETE FROM UserMeal um WHERE um.id=:id AND um.user.id=:user_id"),
+        @NamedQuery(name = UserMeal.ALL_SORTED, query = "SELECT um FROM UserMeal um LEFT JOIN FETCH um.user WHERE um.user.id=:user_id ORDER BY um.dateTime DESC"),
+        @NamedQuery(name = UserMeal.GET_BETWEEN, query = "SELECT um FROM UserMeal um LEFT JOIN FETCH um.user " +
+                "WHERE um.user.id=:user_id AND um.dateTime BETWEEN :stDate AND :edDate ORDER BY um.dateTime DESC"),
+})
 @Entity
 @Table(name = "meals", uniqueConstraints = @UniqueConstraint(columnNames = {"date_time", "user_id"}, name = "meals_unique_user_datetime_idx"))
 public class UserMeal extends BaseEntity {
@@ -30,12 +30,9 @@ public class UserMeal extends BaseEntity {
     public static final String DELETE = "UserMeal.delete";
     public static final String ALL_SORTED = "UserMeal.getAllSorted";
     public static final String GET_BETWEEN = "User.getBetween";
+    public static final String CREATE = "User.Create";
 
-    @Id
-    @SequenceGenerator(name = "global_meal_seq", sequenceName = "global_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_meal_seq")
-    protected Integer id;
-
+    @Convert(converter = LocalDateTimePersistenceConverter.class)
     @Column(name = "date_time", nullable = false)
     @NotEmpty
     protected LocalDateTime dateTime;

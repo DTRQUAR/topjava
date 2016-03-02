@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  */
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional
 public class JpaUserMealRepositoryImpl implements UserMealRepository {
 
     @PersistenceContext
@@ -29,10 +29,19 @@ public class JpaUserMealRepositoryImpl implements UserMealRepository {
     @Transactional
     public UserMeal save(UserMeal userMeal, int userId) {
         if (userMeal.isNew()) {
+            User user = em.find(User.class, userId);
+            userMeal.user = user;
             em.persist(userMeal);
             return userMeal;
         } else {
-            return em.merge(userMeal);
+            User user = em.find(User.class, userId);
+            UserMeal meal = em.find(UserMeal.class, userMeal.getId());
+            if (meal.user.getId() == user.getId()) {
+                userMeal.user = user;
+                return em.merge(userMeal);
+            }else{
+                return null;
+            }
         }
     }
 
@@ -54,6 +63,7 @@ public class JpaUserMealRepositoryImpl implements UserMealRepository {
 
     @Override
     public List<UserMeal> getBetween(LocalDateTime startDate, LocalDateTime endDate, int userId) {
-        return em.createNamedQuery(UserMeal.GET_BETWEEN, UserMeal.class).getResultList();
+        return em.createNamedQuery(UserMeal.GET_BETWEEN, UserMeal.class).setParameter("stDate", startDate)
+                .setParameter("edDate", endDate).setParameter("user_id", userId).getResultList();
     }
 }
