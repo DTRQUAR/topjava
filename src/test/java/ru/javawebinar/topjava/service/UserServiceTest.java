@@ -78,7 +78,6 @@ public class UserServiceTest {
     public void testGetByEmail() throws Exception {
         User user = service.getByEmail("user@yandex.ru");
         MATCHER.assertEquals(USER, user);
-
     }
 
     @Test

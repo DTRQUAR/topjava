@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
         return repository.save(user);
     }
 
-    @CacheEvict(value = "users", allEntries = true)
+    @CacheEvict(value = "users", allEntries = false)
     public void delete(int id) {
         ExceptionUtil.check(repository.delete(id), id);
     }
