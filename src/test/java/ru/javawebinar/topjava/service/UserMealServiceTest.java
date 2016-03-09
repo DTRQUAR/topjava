@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.service;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -33,7 +34,7 @@ import static ru.javawebinar.topjava.UserTestData.USER_ID;
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-@ActiveProfiles(Profiles.datajpa_hsqldb)
+@ActiveProfiles(Profiles.datajpa_postgresql)
 public class UserMealServiceTest {
     private static final LoggerWrapper LOG = LoggerWrapper.get(UserMealServiceTest.class);
 
@@ -53,6 +54,11 @@ public class UserMealServiceTest {
             logInfo(description, nanos);
         }
     };
+
+    @Before
+    public void setUp1() throws Exception {
+        service.evictCache();
+    }
 
     @Autowired
     protected UserMealService service;
