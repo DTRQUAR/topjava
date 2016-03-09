@@ -13,7 +13,7 @@
         <jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>
     </jdbc:initialize-database>
 
-
+<beans profile="datajpa-postgresql">
         <context:component-scan base-package="ru.javawebinar.**.repository.datajpa"/>
         <jpa:repositories base-package="ru.javawebinar.**.repository.datajpa"/>
 
@@ -51,7 +51,7 @@
               p:url="${database.url}"
               p:username="${database.username}"
               p:password="${database.password}"/>
-
+</beans>
 
     <beans profile="jpa-postgres">
         <context:component-scan base-package="ru.javawebinar.**.repository.jpa"/>

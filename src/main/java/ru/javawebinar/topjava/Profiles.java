@@ -6,8 +6,10 @@ package ru.javawebinar.topjava;
  */
 public class Profiles {
     public static final String
-            POSTGRES = "postgres",
-            HSQLDB = "hsqldb",
-            JDBC = "jdbc",
-            JPA = "jpa";
+            datajpa_postgresql = "datajpa-postgresql",
+            jpa_postgres = "jpa-postgres",
+            jdbc_postgres = "jdbc-postgres",
+            datajpa_hsqldb = "datajpa-hsqldb",
+            jpa_hsqldb = "datajpa-hsqldb",
+            jdbc_hsqldb = "jdbc-hsqldb";
 }
