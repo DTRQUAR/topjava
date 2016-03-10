@@ -50,8 +50,6 @@ public class MealServlet extends HttpServlet {
         springContext.getEnvironment().setActiveProfiles(Profiles.datajpa_postgresql);
         springContext.refresh();
         mealController = springContext.getBean(UserMealRestController.class);
-
-
     }
 
     @Override
