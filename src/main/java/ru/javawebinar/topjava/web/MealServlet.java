@@ -13,6 +13,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import ru.javawebinar.topjava.LoggerWrapper;
+import ru.javawebinar.topjava.Profiles;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.util.TimeUtil;
 import ru.javawebinar.topjava.web.meal.UserMealRestController;
@@ -39,24 +40,15 @@ public class MealServlet extends HttpServlet {
     private static final LoggerWrapper LOG = LoggerWrapper.get(MealServlet.class);
 
     private ConfigurableApplicationContext springContext;
-    private ConfigurableApplicationContext springContext1;
-//    private ConfigurableApplicationContext springContext;
-    private ConfigurableEnvironment envContext;
     private UserMealRestController mealController;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-//        envContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml").getEnvironment();
-//        envContext.setActiveProfiles("jdbc-postgres");
-//        springContext = (ClassPathXmlApplicationContext) envContext;
-//        ConfigurableApplicationContext springContextListener = new ClassPathXmlApplicationContext("spring/listener.xml");
-//        springContextListener.start();
-        springContext1 = new ClassPathXmlApplicationContext("spring/listener.xml");
-        ApplicationListenerBean applicationListenerBean = springContext1.getBean(ApplicationListenerBean.class);
-        springContext.addApplicationListener(applicationListenerBean);
-        springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
 
+        springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
+        springContext.getEnvironment().setActiveProfiles(Profiles.datajpa_postgresql);
+        springContext.refresh();
         mealController = springContext.getBean(UserMealRestController.class);
 
 
