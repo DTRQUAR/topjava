@@ -46,7 +46,7 @@ public class MealServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
+        springContext = new ClassPathXmlApplicationContext(new String[] {"spring/spring-app.xml", "spring/spring-db.xml"}, false);
         springContext.getEnvironment().setActiveProfiles(Profiles.datajpa_postgresql);
         springContext.refresh();
         mealController = springContext.getBean(UserMealRestController.class);
