@@ -1,7 +1,17 @@
 package ru.javawebinar.topjava.web;
 
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.context.*;
+import org.springframework.context.event.ContextStartedEvent;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.ResolvableType;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.Environment;
+import org.springframework.core.io.Resource;
 import ru.javawebinar.topjava.LoggerWrapper;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.util.TimeUtil;
@@ -13,9 +23,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -26,18 +39,32 @@ public class MealServlet extends HttpServlet {
     private static final LoggerWrapper LOG = LoggerWrapper.get(MealServlet.class);
 
     private ConfigurableApplicationContext springContext;
+    private ConfigurableApplicationContext springContext1;
+//    private ConfigurableApplicationContext springContext;
+    private ConfigurableEnvironment envContext;
     private UserMealRestController mealController;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
+//        envContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml").getEnvironment();
+//        envContext.setActiveProfiles("jdbc-postgres");
+//        springContext = (ClassPathXmlApplicationContext) envContext;
+//        ConfigurableApplicationContext springContextListener = new ClassPathXmlApplicationContext("spring/listener.xml");
+//        springContextListener.start();
+        springContext1 = new ClassPathXmlApplicationContext("spring/listener.xml");
+        ApplicationListenerBean applicationListenerBean = springContext1.getBean(ApplicationListenerBean.class);
+        springContext.addApplicationListener(applicationListenerBean);
         springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
+
         mealController = springContext.getBean(UserMealRestController.class);
+
+
     }
 
     @Override
     public void destroy() {
-        springContext.close();
+//        springContext.close();
         super.destroy();
     }
 
