@@ -15,7 +15,7 @@ import java.util.Collection;
 import static ru.javawebinar.topjava.UserTestData.ADMIN;
 import static ru.javawebinar.topjava.UserTestData.USER;
 
-public class AdminInMemoryTest {
+public abstract class AdminInMemoryTest {
     private static ConfigurableApplicationContext appCtx;
     private static AdminRestController controller;
 
