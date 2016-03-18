@@ -18,7 +18,7 @@ import java.util.List;
  * 06.03.2015.
  */
 @Controller
-public class UserMealRestController {
+public class UserMealRestController{
     private static final LoggerWrapper LOG = LoggerWrapper.get(UserMealRestController.class);
 
     @Autowired
