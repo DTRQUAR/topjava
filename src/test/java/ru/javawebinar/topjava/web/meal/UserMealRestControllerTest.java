@@ -40,7 +40,7 @@ public class UserMealRestControllerTest extends AbstractControllerTest {
         TestUtil.print(mockMvc.perform(get(REST_URL).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MATCHER.contentListMatcher(MEAL1, MEAL2, MEAL3, MEAL4, MEAL5, MEAL6)));
+                .andExpect(MATCHER_EXCEED.contentListMatcher(MEAL1, MEAL2, MEAL3, MEAL4, MEAL5, MEAL6)));
     }
 
     @Test
