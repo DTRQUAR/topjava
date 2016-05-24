@@ -15,10 +15,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-/**
- * User: gkislin
- * Date: 19.08.2014
- */
 public class MealServlet extends HttpServlet {
     private static final LoggerWrapper LOG = LoggerWrapper.get(MealServlet.class);
 
@@ -57,8 +53,7 @@ public class MealServlet extends HttpServlet {
             response.sendRedirect("meals");
         } else {
             final UserMeal meal = action.equals("create") ?
-                    new UserMeal(LocalDateTime.now(), "", 1000) :
-                    repository.get(getId(request));
+                    new UserMeal(LocalDateTime.now(), "", 1000) : repository.get(getId(request));
             request.setAttribute("meal", meal);
             request.getRequestDispatcher("mealEdit.jsp").forward(request, response);
         }
