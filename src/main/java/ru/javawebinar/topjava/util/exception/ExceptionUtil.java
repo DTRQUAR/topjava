@@ -1,12 +1,7 @@
 package ru.javawebinar.topjava.util.exception;
 
-
 import ru.javawebinar.topjava.LoggerWrapper;
 
-/**
- * User: gkislin
- * Date: 14.05.2014
- */
 public class ExceptionUtil {
     private static final LoggerWrapper LOG = LoggerWrapper.get(ExceptionUtil.class);
 

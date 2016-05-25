@@ -2,10 +2,6 @@ package ru.javawebinar.topjava;
 
 import ru.javawebinar.topjava.util.UserMealsUtil;
 
-/**
- * GKislin
- * 06.03.2015.
- */
 public class LoggedUser {
     public static int id = 1;
 
