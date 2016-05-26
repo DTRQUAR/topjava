@@ -8,10 +8,6 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import javax.sql.DataSource;
 
-/**
- * User: gkislin
- * Date: 26.08.2014
- */
 public class DbPopulator extends ResourceDatabasePopulator {
     private static final ResourceLoader RESOURCE_LOADER = new DefaultResourceLoader();
 
