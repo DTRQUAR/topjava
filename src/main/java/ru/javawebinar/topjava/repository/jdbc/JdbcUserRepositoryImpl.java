@@ -22,11 +22,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * User: gkislin
- * Date: 26.08.2014
- */
-
 @Repository
 public class JdbcUserRepositoryImpl implements UserRepository {
 

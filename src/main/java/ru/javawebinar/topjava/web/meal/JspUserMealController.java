@@ -13,10 +13,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
-/**
- * GKislin
- * 06.03.2015.
- */
 @Controller
 @RequestMapping(value = "/meals")
 public class JspUserMealController extends AbstractUserMealController {

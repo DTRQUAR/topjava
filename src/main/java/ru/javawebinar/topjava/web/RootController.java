@@ -11,10 +11,6 @@ import ru.javawebinar.topjava.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * User: gkislin
- * Date: 22.08.2014
- */
 @Controller
 public class RootController {
     @Autowired
