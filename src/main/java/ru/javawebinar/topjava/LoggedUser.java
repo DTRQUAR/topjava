@@ -9,8 +9,6 @@ import ru.javawebinar.topjava.util.UserUtil;
 import static java.util.Objects.requireNonNull;
 
 /**
- * GKislin
- * 06.03.2015.
  * <p>
  * Mock implementation
  */

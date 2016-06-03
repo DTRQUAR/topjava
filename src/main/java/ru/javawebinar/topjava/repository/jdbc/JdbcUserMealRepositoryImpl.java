@@ -17,11 +17,6 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * User: gkislin
- * Date: 26.08.2014
- */
-
 @Repository
 @Transactional(readOnly = true)
 public class JdbcUserMealRepositoryImpl implements UserMealRepository {

@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.javawebinar.topjava.LoggedUser;
 import ru.javawebinar.topjava.model.User;
 
-/**
- * GKislin
- * 06.03.2015.
- */
 @RestController
 @RequestMapping(ProfileRestController.REST_URL)
 public class ProfileRestController extends AbstractUserController {

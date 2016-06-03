@@ -11,10 +11,6 @@ import ru.javawebinar.topjava.model.User;
 import java.net.URI;
 import java.util.List;
 
-/**
- * GKislin
- * 06.03.2015.
- */
 @RestController
 @RequestMapping(AdminRestController.REST_URL)
 public class AdminRestController extends AbstractUserController {

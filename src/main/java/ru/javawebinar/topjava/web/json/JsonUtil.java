@@ -9,10 +9,6 @@ import java.util.List;
 
 import static ru.javawebinar.topjava.web.json.JacksonObjectMapper.getMapper;
 
-/**
- * User: gkislin
- * Date: 30.04.2014
- */
 public class JsonUtil {
 
     private static final LoggerWrapper LOG = LoggerWrapper.get(JsonUtil.class);
