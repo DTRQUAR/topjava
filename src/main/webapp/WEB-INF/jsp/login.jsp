@@ -36,11 +36,6 @@
                     ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
             </div>
         </c:if>
-        <c:if test="${not empty message}">
-            <div class="message">
-                <spring:message code="${message}"/>
-            </div>
-        </c:if>
         <p>
 
         <p>User login: <b>user@yandex.ru / password</b></p>

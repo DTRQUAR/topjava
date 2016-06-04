@@ -9,6 +9,25 @@
     <http pattern="/resources/**" security="none"/>
     <http pattern="/webjars/**" security="none"/>
 
+    <!--
+    При заходе по адресу /rest/** - сработает базовая авторизация.
+    - use-expressions="true" - Если true, то будет возможность использовать выражения (типа hasRole('ROLE_ADMIN')
+    и isAuthenticated()) в тэгах <intercept-url/>
+    - name="restSecurityFilterChain" - имя бина, используемое для того, чтобы ссылаться на него из любого места
+    в контексте, данные базовой авторизации передаются в header.
+    - create-session="stateless" - сессия не создается, авторизированный пользователь будет храниться в переменной
+    ThreadLocal - в контексте выполнения потока.
+    - <http-basic/> - базовая авторизация: данные не шифруются (кодируются в base64), при попытке зайти на защищенную
+    страницу, сервер отправит ответ с кодом 401, но пока не отобразит его, если мы нажали отмену, то отобразится страница
+    со статусом 401.
+    - <intercept-url pattern="/rest/admin/**" access="hasRole('ROLE_ADMIN')"/> - указывается паттерн, т.е. урл, на
+    который должно действовать правило access="hasRole('ROLE_ADMIN')".
+    - <csrf disabled="true"/> - отключаем защиту от межсайтовой подделки запроса;  вид атак на посетителей веб-сайтов,
+    использующий недостатки протокола HTTP. Если жертва заходит на сайт, созданный злоумышленником, от её лица тайно
+    отправляется запрос на другой сервер (например, на сервер платёжной системы), осуществляющий некую вредоносную
+    операцию (например, перевод денег на счёт злоумышленника). Для осуществления данной атаки жертва должна быть
+    аутентифицирована на том сервере, на который отправляется запрос.
+    -->
     <http pattern="/rest/**" use-expressions="true" name="restSecurityFilterChain" create-session="stateless">
         <http-basic/>
         <intercept-url pattern="/rest/admin/**" access="hasRole('ROLE_ADMIN')"/>
@@ -16,6 +35,19 @@
         <csrf disabled="true"/>
     </http>
 
+    <!--
+        - <http> - между этими тэгами задается конфигурация спринг security
+        - <intercept-url pattern="/login" access="permitAll"/> - доступ к урл /login будет у всех
+        - <intercept-url pattern="/**/admin/**" access="hasRole('ROLE_ADMIN')"/> - для доступа к урлу
+        /**/admin/**, необходима роль ROLE_ADMIN.
+        - <intercept-url pattern="/**" access="isAuthenticated()" /> - для доступа к урлу /**, необходимо
+        быть аутентифицируемым.
+        - default-target-url="/meals" после логина бы будем перенаправлены на эту страницу.
+        - authentication-failure-url="/login?error=true" - если аутентификация не удалась, то
+        мы будем перенаправлены на /login?error=true
+        - login-processing-url="/spring_security_check"- при переходе по данному урлу, сработает какой то
+        фильтр который проверит введенные нами данные (UsernamePasswordAuthenticationFilter)
+    -->
     <http>
         <intercept-url pattern="/login" access="permitAll"/>
         <intercept-url pattern="/register" access="permitAll"/>
@@ -29,8 +61,16 @@
         <!--<csrf disabled="true"/>-->
     </http>
 
+    <!--Создаем свой бин
+    - factory-method="getPasswordEncoder" - метод для создания экземпляра бина.
+    -->
     <beans:bean class="ru.javawebinar.topjava.util.PasswordUtil" id="passwordEncoder" factory-method="getPasswordEncoder"/>
 
+    <!--
+        Объявляем свой менеджер аутентификации.
+        - <authentication-provider user-service-ref="userService"> - указываем ссылку на провайдера аутентификации
+        - <password-encoder ref="passwordEncoder"/> даем ссылку на бин кодирования пароля по алгоритму SHA-1
+    -->
     <authentication-manager>
         <authentication-provider user-service-ref="userService">
             <password-encoder ref="passwordEncoder"/>
