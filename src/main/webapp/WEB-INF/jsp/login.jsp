@@ -1,11 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
+<%--
+    Добавляем контейнер, который содержит в себе таблицу из одной строки,
+    содержащей форму состояющую из: логин, пароль и кнопки.
+    При нажатии на кнопку, мы перейдем по адресу spring_security_check с методом post,
+    срабатывают определенные фильтры (их около 20) и далее мы переходим на meals, если
+    успешно залогинились, или отправлен запрос с адресом - "/login?error=true"
+
+--%>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header navbar-brand"><spring:message code="app.title"/></div>
@@ -29,6 +37,11 @@
     </div>
 </div>
 
+<%--
+    Создаем блок, в котором расписан список применяемых технологий в данном проекте,
+    также реализована логика вывода сообщения о неверно введенных данных при логине:
+    - если значение атрибута error = true, то выводим сообщение.
+--%>
 <div class="jumbotron">
     <div class="container">
         <c:if test="${error}">

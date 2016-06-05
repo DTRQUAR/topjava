@@ -14,6 +14,11 @@ import static java.util.Objects.requireNonNull;
  * <p>
  * Mock implementation
  */
+
+/*
+* Этот класс выступает как объект данных для пользователя, используемый в
+* Спринг Секьюрити
+* */
 public class LoggedUser extends org.springframework.security.core.userdetails.User {
     static final long serialVersionUID = 1L;
 

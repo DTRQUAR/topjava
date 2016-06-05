@@ -18,6 +18,10 @@
 
             <div class="view-box">
 
+                <%--
+                Создаем форму для ввода даты и времени, и кнопкой Фильтр, позволяя
+                отфильтровать записи в таблице по введенным значениям
+                --%>
                 <form:form method="post" class="form-horizontal" role="form" id="filter">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="startDate">From Date:</label>
@@ -51,7 +55,16 @@
                         </div>
                     </div>
                 </form:form>
+
+                <%--
+                    Создаем кнопку добавления еда, функцию обрабатывающая ее нажатие, находится
+                    в файле datatablesUtil.js
+                --%>
                 <a class="btn btn-sm btn-info" id="add"><spring:message code="meals.add"/></a>
+
+                <%--
+                Создаем таблицу, которая состоит только из заголовков (содержимое отрисовывается далее)
+                --%>
                 <table class="table table-striped display" id="datatable">
                     <thead>
                     <tr>
@@ -71,10 +84,15 @@
 <div class="modal fade" id="editRow">
     <div class="modal-dialog">
         <div class="modal-content">
+
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <%--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--%>
                 <h2 class="modal-title"><spring:message code="meals.edit"/></h2>
             </div>
+
+            <%--
+            Описываем модальное окно, которые будет появляться при нажатии на кнопку edit
+            --%>
             <div class="modal-body">
                 <form:form class="form-horizontal" method="post" id="detailsForm">
                     <input type="hidden" id="id" name="id">
@@ -86,6 +104,7 @@
                             <input class="form-control" id="dateTime" name="dateTime" placeholder="Date">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="description" class="control-label col-xs-3">Description</label>
 
@@ -94,6 +113,7 @@
                                    placeholder="Description">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="calories" class="control-label col-xs-3">Calories</label>
 
@@ -102,6 +122,7 @@
                                    placeholder="2000">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
                             <button type="submit" class="btn btn-primary">Save</button>
@@ -112,6 +133,8 @@
         </div>
     </div>
 </div>
+
+
 </body>
 <script type="text/javascript" src="webjars/datetimepicker/2.3.4/jquery.datetimepicker.js"></script>
 <script type="text/javascript" src="webjars/datatables/1.10.9/js/jquery.dataTables.min.js"></script>

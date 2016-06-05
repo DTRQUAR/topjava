@@ -1,6 +1,13 @@
 function makeEditable() {
     form = $('#detailsForm');
 
+    /*
+    * Функция обрабатывающая нажатие на кнопку добавления еды
+    *
+    * - $('#editRow').modal(); - у элемента с id = editRow, вызываем открытие
+    * модального окна
+    * -
+    * */
     $('#add').click(function () {
         form.find(":input").val("");
         $('#id').val(0);

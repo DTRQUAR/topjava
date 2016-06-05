@@ -43,10 +43,14 @@
 
     <context:component-scan base-package="ru.javawebinar.**.web"/>
 
-    <!--  all resources inside folder src/main/webapp/resources are mapped so they can be referred to inside JSP files -->
+    <!--  all resources inside folder src/main/webapp/resources are mapped so they can be referred to inside JSP files-->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
-    <!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
+    <!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...)
+    Задаем общий роутинг на webjars, все подключенные в мавен дипенденсис вебджары, имеют путь
+    "classpath:/META-INF/resources/webjars/", мы этот путь маппим на "/webjars/**",
+    т.е. если мы напишем webjars/bootstap.min.js, то попадем по пути - META-INF/resources/webjars/ bootstap.min.js
+    -->
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"

@@ -86,6 +86,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         repository.save(user);
     }
 
+    /*
+    * Этот метод объявлен в интерфейсе UserDetailsService, и используется провайдером аутентификации,
+    * достает из базы пользователя по имени.
+    * */
     @Override
     public LoggedUser loadUserByUsername(String email) throws UsernameNotFoundException {
         User u = repository.getByEmail(email.toLowerCase());
