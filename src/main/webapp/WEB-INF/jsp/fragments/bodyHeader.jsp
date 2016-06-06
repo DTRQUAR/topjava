@@ -11,6 +11,10 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
+                    <%--
+                    Тэг form (спринговский) автоматически подключает csrf параметры в форму,
+                    этот параметр будет как скрытое input поле
+                    --%>
                     <form:form class="navbar-form" action="logout" method="post">
                         <sec:authorize access="isAuthenticated()">
                             <sec:authorize access="hasRole('ROLE_ADMIN')">

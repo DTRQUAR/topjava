@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * This interceptor adds the user to the model of every requests managed
+ *
  */
 public class ModelInterceptor extends HandlerInterceptorAdapter {
 

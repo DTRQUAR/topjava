@@ -17,6 +17,11 @@
             <h2>${register ? 'Register new' : userTo.name.concat(' profile')}</h2>
 
             <div class="view-box">
+                <%--
+                Привызываем к форме поле userTo, у бина UserTo, есть валидации (аннотациями)
+                при нажатии на Add или Update, будет происходить Binding - валидация данных
+                (используя аннотации в бине UserTo)
+                --%>
                 <form:form modelAttribute="userTo" class="form-horizontal" method="post"
                            action="${register ? 'register' : 'profile'}" charset="utf-8"
                            accept-charset="UTF-8">

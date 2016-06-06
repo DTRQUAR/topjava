@@ -31,6 +31,10 @@ function makeEditable() {
 
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
+
+    /*
+    * ajaxSend будет выполняться для каждого AJAX'овского запроса
+    * */
     $(document).ajaxSend(function(e, xhr, options) {
         xhr.setRequestHeader(header, token);
     });
