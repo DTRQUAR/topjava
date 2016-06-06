@@ -2,8 +2,10 @@ function makeEditable() {
     form = $('#detailsForm');
 
     /*
-    * Функция обрабатывающая нажатие на кнопку добавления еды
-    *
+    * Функция срабатывает при нажатии на кнопку "Добавить пользователя"
+    * - form.find(":input").val("") - ищем все поля с типом input и присваивем им значение
+    * пустой строки
+    * - $('#id').val(0) - элементу с id = id присваиваем значение 0
     * - $('#editRow').modal(); - у элемента с id = editRow, вызываем открытие
     * модального окна
     * -
@@ -14,6 +16,10 @@ function makeEditable() {
         $('#editRow').modal();
     });
 
+    /*
+    * Функция срабатывает при нажатии на кнопку Save в модальном
+    * окне ввода данных пользователя
+    * */
     form.submit(function () {
         save();
         return false;
@@ -30,6 +36,13 @@ function makeEditable() {
     });
 }
 
+/*
+* Событие срабатывающие при нажатии на кнпоку Edit
+* - присваиваем всем input полям уже существующие
+* значения у объекта
+* - Открывается модальное окно, для редактирования
+* при этом input ол
+* */
 function updateRow(id) {
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
@@ -50,6 +63,11 @@ function deleteRow(id) {
     });
 }
 
+/*
+* Функция срабатывает при нажатии на checkbox у пользователя
+* - chkbox.closest('tr') - находит все элементы лежащие внутри этого тэга,
+* в нашем случае это строка (row)
+* */
 function enable(chkbox, id) {
     var enabled = chkbox.is(":checked");
     chkbox.closest('tr').css("text-decoration", enabled ? "none" : "line-through");
@@ -63,10 +81,20 @@ function enable(chkbox, id) {
     });
 }
 
+/*
+* Функция обновления таблицы по данным
+* datatableApi - здесь хранится результат выполнения фун-ии DataTable()
+* сначала очищаем таблицу, затем добавляем строки, пользуясь data
+* */
 function updateTableByData(data) {
     datatableApi.clear().rows.add(data).draw();
 }
 
+/*
+* Функция реализующая сохранение пользователя или еды
+* эта функция вызывается при нажатии на кнопку save
+* модального окна
+* */
 function save() {
     $.ajax({
         type: "POST",
@@ -82,6 +110,9 @@ function save() {
 
 var failedNote;
 
+/*
+* Функция реализующая закрытие окна уведомления
+* */
 function closeNoty() {
     if (failedNote) {
         failedNote.close();
@@ -89,6 +120,9 @@ function closeNoty() {
     }
 }
 
+/*
+* Выводится уведомление вниу справа, в зеленой блоке
+* */
 function successNoty(text) {
     closeNoty();
     noty({
@@ -109,6 +143,10 @@ function failNoty(event, jqXHR, options, jsExc) {
     });
 }
 
+/*
+* Добавляется кнопка редактирования для записи в строке
+* вешается событие: при клике срабатывает фнукция updateRow(id)
+* */
 function renderEditBtn(data, type, row) {
     if (type == 'display') {
         return '<a class="btn btn-xs btn-primary" onclick="updateRow(' + row.id + ');">Edit</a>';
@@ -116,6 +154,10 @@ function renderEditBtn(data, type, row) {
     return data;
 }
 
+/*
+ * Добавляется кнопка удаления записи в строке
+ * вешается событие: при клике срабатывает фнукция deleteRow(id)
+ * */
 function renderDeleteBtn(data, type, row) {
     if (type == 'display') {
         return '<a class="btn btn-xs btn-danger" onclick="deleteRow(' + row.id + ');">Delete</a>';

@@ -1,6 +1,9 @@
 var ajaxUrl = 'ajax/profile/meals/';
 var datatableApi;
 
+/*
+* Функция обновления таблицы еды
+* */
 function updateTable() {
     $.ajax({
         type: "POST",
@@ -13,6 +16,9 @@ function updateTable() {
     return false;
 }
 
+/*
+* Функция срабатывающая после загрузк документа
+* */
 $(function () {
     datatableApi = $('#datatable').DataTable({
         "ajax": {

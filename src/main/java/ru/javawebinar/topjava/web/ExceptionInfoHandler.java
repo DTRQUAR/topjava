@@ -12,10 +12,6 @@ import ru.javawebinar.topjava.util.exception.ValidationException;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * User: gkislin
- * Date: 23.09.2014
- */
 @ControllerAdvice(annotations = RestController.class)
 public class ExceptionInfoHandler {
     private static final LoggerWrapper LOG = LoggerWrapper.get(ExceptionInfoHandler.class);

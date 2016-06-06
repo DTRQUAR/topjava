@@ -13,9 +13,6 @@ import ru.javawebinar.topjava.util.exception.ValidationException;
 import javax.validation.Valid;
 import java.util.List;
 
-/**
- * User: grigory.kislin
- */
 @RestController
 @RequestMapping("/ajax/admin/users")
 public class AdminAjaxController extends AbstractUserController {

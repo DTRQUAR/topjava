@@ -13,10 +13,6 @@ import java.util.List;
 import static java.time.LocalDateTime.of;
 import static ru.javawebinar.topjava.model.BaseEntity.START_SEQ;
 
-/**
- * GKislin
- * 13.03.2015.
- */
 public class MealTestData {
 
     public static final ModelMatcher<UserMeal, String> MATCHER = new ToStringModelMatcher<>(UserMeal.class);

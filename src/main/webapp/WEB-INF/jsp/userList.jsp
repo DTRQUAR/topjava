@@ -38,6 +38,10 @@
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 
+<%--
+Форма для добавления пользователя, она будет открываться в модальном окне
+при нажатии на кнопку "Добавить пользовтеля"
+--%>
 <div class="modal fade" id="editRow">
     <div class="modal-dialog">
         <div class="modal-content">

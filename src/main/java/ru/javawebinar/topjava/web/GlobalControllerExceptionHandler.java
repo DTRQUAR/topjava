@@ -10,10 +10,6 @@ import ru.javawebinar.topjava.LoggerWrapper;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * User: gkislin
- * Date: 23.09.2014
- */
 @ControllerAdvice
 public class GlobalControllerExceptionHandler {
     private static final LoggerWrapper LOG = LoggerWrapper.get(GlobalControllerExceptionHandler.class);

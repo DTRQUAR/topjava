@@ -20,10 +20,6 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static ru.javawebinar.topjava.Profiles.DATAJPA;
 import static ru.javawebinar.topjava.Profiles.POSTGRES;
 
-/**
- * User: gkislin
- * Date: 10.08.2014
- */
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
         "classpath:spring/spring-mvc.xml",

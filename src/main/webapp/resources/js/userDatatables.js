@@ -1,6 +1,11 @@
 var ajaxUrl = 'ajax/admin/users/';
 var datatableApi;
 
+/*
+* Функция обновления таблицы
+* посылаем запрос get по урлу ajaxUrl
+*
+* */
 function updateTable() {
     $.get(ajaxUrl, function (data) {
         updateTableByData(data);
@@ -10,7 +15,7 @@ function updateTable() {
 /*
 * Функция срабатывающая после загрузки страницы
 * - применяем к элементу с id = datatable, функцию DataTable(), для отрисовки таблицы
-* - указываем урл, по которму будем брать данные (срабатываем метод контроллера AdminAjaxController,
+* - "url": ajaxUrl - указываем урл, по которму будем брать данные (срабатываем метод контроллера AdminAjaxController,
 * который возвращает список пользователей в формате JSON)
 * */
 $(function () {
@@ -67,17 +72,30 @@ $(function () {
                 "render": renderDeleteBtn
             }
         ],
+        /*
+        * 0 - указывает по какой колонке будет производится упорядочивание
+        * asc - по возрастанию
+        * */
         "order": [
             [
                 0,
                 "asc"
             ]
         ],
+        /*
+        * Данная функция вызывается когда отрисовывается строка
+        * Эта функию проверяет - если enabled = false, то строка с даными зачеркивается
+        * */
         "createdRow": function (row, data, dataIndex) {
             if (!data.enabled) {
                 $(row).css("text-decoration", "line-through");
             }
         },
+
+        /*
+        * Выполняем фун-ию makeEditable, после полной загрузки данных таблицы
+        * (когда таблицы уже отрисовалась)
+        * */
         "initComplete": makeEditable
     });
 });

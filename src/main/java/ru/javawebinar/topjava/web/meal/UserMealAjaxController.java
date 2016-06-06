@@ -14,10 +14,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-/**
- * GKislin
- * 06.03.2015.
- */
 @RestController
 @RequestMapping(value = "/ajax/profile/meals")
 public class UserMealAjaxController extends AbstractUserMealController {
