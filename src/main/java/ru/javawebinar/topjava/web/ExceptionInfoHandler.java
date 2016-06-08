@@ -12,6 +12,10 @@ import ru.javawebinar.topjava.util.exception.ValidationException;
 
 import javax.servlet.http.HttpServletRequest;
 
+/*
+* @ControllerAdvice(annotations = RestController.class) - говорит, что данный обработчик
+* будет применим только к объектам класса RestController
+* */
 @ControllerAdvice(annotations = RestController.class)
 public class ExceptionInfoHandler {
     private static final LoggerWrapper LOG = LoggerWrapper.get(ExceptionInfoHandler.class);

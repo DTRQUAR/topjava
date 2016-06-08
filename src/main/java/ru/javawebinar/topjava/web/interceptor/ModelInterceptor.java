@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * This interceptor adds the user to the model of every requests managed
- *
+ * Нужно для того чтобы в хэдаре отобразить имя пользователя, для этого
+ * мы извлекаем объект класса UserTo и кладем его в модель (если его там еще нет)
+ * В хэдаре достаем его из модели следующим образом:
+ * <a class="btn btn-info" role="button" href="profile">${userTo.name} profile</a>
  */
 public class ModelInterceptor extends HandlerInterceptorAdapter {
 

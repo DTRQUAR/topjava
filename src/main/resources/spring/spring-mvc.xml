@@ -73,9 +73,15 @@
           p:cacheSeconds="60"
           p:defaultEncoding="UTF-8">
         <property name="basenames" value="file:///#{systemEnvironment['TOPJAVA_ROOT']}/config/messages/app"/>
+        <!-- Для английского языка ищется файл app_en и если он не находит его, то по умолчанию происходит fallbach
+        на дефолтную локаль app_ru, а у нас дефолтная локаль app
+        -->
         <property name="fallbackToSystemLocale" value="false"/>
     </bean>
 
+    <!--
+    Реализация хранения локали в куках
+    -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="defaultLocale" value="ru"/>
     </bean>

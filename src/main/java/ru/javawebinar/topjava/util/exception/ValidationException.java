@@ -2,6 +2,10 @@ package ru.javawebinar.topjava.util.exception;
 
 import org.springframework.validation.BindingResult;
 
+/*
+* Это исключение бросается если в объекте класса BindingResult есть ошибки
+* (.hasErrors() = true)
+* */
 public class ValidationException extends RuntimeException {
 
     public ValidationException(BindingResult result) {
