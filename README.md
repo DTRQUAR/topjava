@@ -7,4 +7,4 @@ Java Enterprise проект с регистрацией/авторизацие�
 Весь REST интерфейс покрывается JUnit тестами, используя Spring MVC Test и Spring Security Test.
 
 Стек технологий: Spring Security, Spring MVC, Spring Data JPA, Spring Security Test, Hibernate ORM, Hibernate Validator, SLF4J, Json Jackson,
-JSP, JSTL, Apache Tomcat, WebJars, DataTables plugin, Ehcache, PostgreSQL, JUnit, Hamcrest, jQuery, jQuery notification, Bootstrap.
+JSP,  JSTL, Apache Tomcat, WebJars, DataTables plugin, Ehcache, PostgreSQL, JUnit, Hamcrest, jQuery, jQuery notification, Bootstrap.
