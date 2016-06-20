@@ -68,7 +68,10 @@ public class UserMealRestController extends AbstractUserMealController {
             @RequestParam(value = "startDate", required = false) LocalDate startDate, @RequestParam(value = "startTime", required = false) LocalTime startTime,
             @RequestParam(value = "endDate", required = false) LocalDate endDate, @RequestParam(value = "endTime", required = false) LocalTime endTime) {
         return super.getBetween(
-                startDate != null ? startDate : TimeUtil.MIN_DATE, startTime != null ? startTime : LocalTime.MIN,
-                endDate != null ? endDate : TimeUtil.MAX_DATE, endTime != null ? endTime : LocalTime.MAX);
+                startDate != null ? startDate : TimeUtil.MIN_DATE,
+                startTime != null ? startTime : LocalTime.MIN,
+
+                endDate != null ? endDate : TimeUtil.MAX_DATE,
+                endTime != null ? endTime : LocalTime.MAX);
     }
 }
