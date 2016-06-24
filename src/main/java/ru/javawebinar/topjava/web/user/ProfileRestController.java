@@ -12,6 +12,10 @@ import ru.javawebinar.topjava.to.UserTo;
 @RestController
 @RequestMapping(ProfileRestController.REST_URL)
 public class ProfileRestController extends AbstractUserController {
+
+    public static void main(String[] args) {
+        System.out.println("a");
+    }
     public static final String REST_URL = "/rest/profile";
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
